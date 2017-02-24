@@ -1,0 +1,66 @@
+.my_center{
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  margin:auto;
+}
+
+.menu_btn_item{
+  background: inherit;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  width: 100%;
+  padding: 13px;
+  font-size: initial;
+  box-sizing: border-box;
+}
+
+.about_img{
+  border-radius: 20px;
+}
+.about_post_date{
+  color:lightgray;
+}
+.about_post_col{
+  border: 1px solid lightgray;
+  border-radius: 20px;
+  background: rgba(211, 211, 211, 0.08);
+}
+
+.history_col{
+  margin: auto;
+}
+
+.history_row, .center_div{
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.fa-times-circle{
+  color: red;
+}
+.fa-check-circle{
+  color: green;
+}
+.problem_title{
+  border-bottom: 1px solid lightgrey;
+  border-top: none;
+  color: black;
+  font-size: x-large;
+}
+.center_div{
+  padding: 20px;
+  width: 70%;
+}
+.upcoming_row{
+  padding: 5%;
+}
+.vote_btn{
+  padding: 10px 30px;
+  display: flex;
+  background: rgba(0, 128, 0, 0.78);
+  color: white;
+  margin: auto;
+  border-radius: 5px;
+}
