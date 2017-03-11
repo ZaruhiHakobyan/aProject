@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar color="dark">
+  <ion-navbar color="hem_purple">
     <ion-title>
       Contact
     </ion-title>
@@ -9,15 +9,17 @@
 <ion-content padding class="my_content">
 
   <ion-list margin-horizontal>
+    <div text-center>
+      <p class="contact_us_p">If you have any offers, feel free to contact us</p>
+    </div>
     <ion-item>
       <ion-label floating >Email</ion-label>
       <ion-input type="text"></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-label floating>If you have any offers, feel free to contact us</ion-label>
-      <ion-textarea rows="10" columns="50"></ion-textarea>
+    <ion-item class="my_center center_div">
+        <ion-textarea placeholder="Write your message here"></ion-textarea>
     </ion-item>
-    <div text-center>
+    <div text-right>
        <button ion-button>Send</button>
     </div>
   </ion-list>

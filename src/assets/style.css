@@ -1,3 +1,5 @@
+
+
 .my_center{
   top:0;
   left:0;
@@ -8,12 +10,12 @@
 
 .menu_btn_item{
   background: inherit;
-  border: 1px solid lightgrey;
-  border-radius: 5px;
+  border-bottom: 1px solid lightgrey;
   width: 100%;
   padding: 13px;
   font-size: initial;
   box-sizing: border-box;
+  text-align: left;
 }
 
 .about_img{
@@ -27,15 +29,17 @@
   border-radius: 20px;
   background: rgba(211, 211, 211, 0.08);
 }
+.contact_us_p{
+  font-size: x-large;
+}
 
 .history_col{
   margin: auto;
 }
 
-.history_row, .center_div{
-  border: 1px solid lightgrey;
-  border-radius: 5px;
+.history_row{
   margin-bottom: 10px;
+  border-bottom: 1px solid lightgrey;
 }
 .fa-times-circle{
   color: red;
@@ -51,7 +55,10 @@
 }
 .center_div{
   padding: 20px;
-  width: 70%;
+  width: 95%;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 .upcoming_row{
   padding: 5%;
