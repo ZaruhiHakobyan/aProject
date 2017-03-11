@@ -1,4 +1,20 @@
-
+.tab-button-text{
+  color: #f5e0f3;
+  font-weight: bold;
+}
+/*.tabs-md .tab-button[aria-selected=true]{
+  background: #652b5f;
+}*/
+.tab-button-icon.icon.icon-md{
+  color: #f5e0f3;
+}
+.tab-button-icon.icon.icon-md.ion-md-bulb{
+  color: #ffd705;
+}
+.my_content{
+  background: #f5e0f3;
+  color: black;
+}
 
 .my_center{
   top:0;
@@ -6,6 +22,7 @@
   right:0;
   bottom:0;
   margin:auto;
+  background: white;
 }
 
 .menu_btn_item{
@@ -18,9 +35,6 @@
   text-align: left;
 }
 
-.about_img{
-  border-radius: 20px;
-}
 .about_post_date{
   color:lightgray;
 }
@@ -37,9 +51,22 @@
   margin: auto;
 }
 
+.history_date{
+  float: left;
+  width: 25%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.history_title{
+  float: left;
+  width: 75%;
+  box-sizing: border-box;
+}
 .history_row{
   margin-bottom: 10px;
   border-bottom: 1px solid lightgrey;
+  display: inline-block;
 }
 .fa-times-circle{
   color: red;
@@ -66,7 +93,7 @@
 .vote_btn{
   padding: 10px 30px;
   display: flex;
-  background: rgba(0, 128, 0, 0.78);
+  background: #652b5f;
   color: white;
   margin: auto;
   border-radius: 5px;
