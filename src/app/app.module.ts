@@ -11,6 +11,8 @@ import { HistoryPage } from '../pages/history/history';
 import { ProblemsPage } from '../pages/problems/problems';
 import { UpcomingPage } from '../pages/upcoming/upcoming';
 
+import {AuthService} from '../services';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +27,7 @@ import { UpcomingPage } from '../pages/upcoming/upcoming';
     UpcomingPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -39,6 +41,6 @@ import { UpcomingPage } from '../pages/upcoming/upcoming';
     ProblemsPage,
     UpcomingPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService]
 })
 export class AppModule {}

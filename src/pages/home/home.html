@@ -38,15 +38,22 @@
     <ion-list>
       <ion-item>
         <ion-label floating>Էլեկտրոնային հասցե</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" #email></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>Գաղտնաբառ</ion-label>
-        <ion-input type="password"></ion-input>
+        <ion-input type="password" #password></ion-input>
       </ion-item>
     </ion-list>
+    <div text-left>
+      <button ion-button color="hem_purple" (click)="register({email: email.value, password: password.value})">
+        Գրանցվել
+      </button>
+    </div>
     <div text-right>
-       <button ion-button color="hem_purple">Մուտք</button>
+       <button ion-button color="hem_purple" (click)="login({email: email.value, password: password.value})">
+         Մուտք
+       </button>
     </div>
   </div>
 </ion-content>
