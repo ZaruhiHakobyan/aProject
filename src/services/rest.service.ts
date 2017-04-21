@@ -8,7 +8,7 @@ export abstract class RestService {
 
   constructor(private http: Http, private storage: Storage){}
 
-  private API_URL: string = 'http://localhost:3000/';
+  private API_URL: string = 'http://bcon.eu-2.evennode.com/';
 
   private getUrl(url: string): string {
     return `${this.API_URL + url}`;
