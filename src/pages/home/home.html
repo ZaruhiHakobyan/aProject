@@ -34,7 +34,7 @@
   </ion-menu>
 
 
-  <div class="my_center center_div" >
+  <div class="my_center center_div clean" >
     <ion-list>
       <ion-item>
         <ion-label floating>Էլեկտրոնային հասցե</ion-label>
@@ -51,12 +51,12 @@
         <span *ngIf="form.controls['password'].errors.required">Դաշտը պարտադիր է լրացման համար</span>
       </div>
     </ion-list>
-    <div text-left>
+    <div text-left class="login_btns">
       <button ion-button color="hem_purple" (click)="register(form.value)">
         Գրանցվել
       </button>
     </div>
-    <div text-right>
+    <div text-right class="login_btns">
        <button ion-button color="hem_purple" (click)="login(form.value)">
          Մուտք
        </button>
