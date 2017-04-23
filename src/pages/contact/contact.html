@@ -14,13 +14,21 @@
       </div>
       <ion-item>
         <ion-label floating >Էլեկտրոնային հասցե</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" [formControl]="form.controls['title']"></ion-input>
       </ion-item>
+      <div class="errors" *ngIf="(submitted || form.controls['title'].touched) && form.controls['title'].errors">
+        <span *ngIf="form.controls['title'].errors.required">Դաշտը պարտադիր է լրացման համար</span>
+      </div>
       <ion-item class="center_div">
-          <ion-textarea rows="5" placeholder="Գրե՛ք Ձեր գաղափարն այստեղ"></ion-textarea>
+          <ion-textarea rows="5" placeholder="Գրե՛ք Ձեր գաղափարն այստեղ" [formControl]="form.controls['body']"></ion-textarea>
       </ion-item>
+      <div class="errors" *ngIf="(submitted || form.controls['body'].touched) && form.controls['body'].errors">
+        <span *ngIf="form.controls['body'].errors.required">Դաշտը պարտադիր է լրացման համար</span>
+      </div>
       <div text-right>
-         <button ion-button color="hem_purple">Ուղարկել</button>
+         <button ion-button color="hem_purple" (click)="submitPost(form.value)">
+           Ուղարկել
+         </button>
       </div>
     </ion-list>
   </div>

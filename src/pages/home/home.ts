@@ -8,6 +8,7 @@ import { HistoryPage } from '../history/history';
 import { UpcomingPage } from '../upcoming/upcoming';
 
 import {AuthService} from '../../services';
+import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 
 
 @Component({
@@ -16,6 +17,12 @@ import {AuthService} from '../../services';
   providers: [Storage]
 })
 export class HomePage {
+
+  public form: FormGroup = (new FormBuilder()).group({
+    email: ['', Validators.compose([Validators.required])],
+    password: ['', Validators.compose([Validators.required])]
+  });
+  public submitted: boolean = false;
 
   constructor(public navCtrl: NavController, private authService: AuthService,
               private storage: Storage, private toast: ToastController) {}
@@ -37,6 +44,8 @@ export class HomePage {
   }
 
   login(data: {email: string, password: string}): void {
+    this.submitted = true;
+    if(!this.form.valid) return;
     this.authService.login(data)
       .then(
         (res: {token: string}) => this.storage.ready().then(
@@ -51,6 +60,8 @@ export class HomePage {
   }
 
   register(data: {email: string, password: string}): void {
+    this.submitted = true;
+    if(!this.form.valid) return;
     this.authService.register(data)
       .then(
         (res: any) => this.login(data),
@@ -67,6 +78,8 @@ export class HomePage {
     });
     toast.present()
   }
+
+  public show = (input) => console.log(input);
 
 
 }

@@ -4,28 +4,12 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding class="my_content">
-  <div class="my_center center_div">
+  <div class="my_center center_div" *ngFor="let post of posts">
     <ion-list radio-group>
-      <ion-list-header class="problem_title">Կանաչապատում</ion-list-header>
+      <ion-list-header class="problem_title">{{ post.title }}</ion-list-header>
     </ion-list>
     <div text-right>
-        <button class="vote_btn">Քվեարկել</button>
-    </div>
-  </div>
-  <div class="my_center center_div">
-    <ion-list radio-group>
-      <ion-list-header class="problem_title">Զբոսայգու բարեկարգում</ion-list-header>
-    </ion-list>
-    <div text-right>
-        <button class="vote_btn" >Քվեարկել</button>
-    </div>
-  </div>
-  <div class="my_center center_div">
-    <ion-list radio-group>
-      <ion-list-header class="problem_title">Շենքի կառուցում</ion-list-header>
-    </ion-list>
-    <div text-right>
-        <button class="vote_btn" >Քվեարկել</button>
+        <button class="vote_btn" (click)="vote(post)">Քվեարկել</button>
     </div>
   </div>
 </ion-content>

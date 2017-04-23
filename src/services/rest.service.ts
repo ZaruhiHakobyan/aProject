@@ -3,10 +3,15 @@ import {Observable} from 'rxjs/Rx';
 import {Storage} from '@ionic/storage';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
+import {Injectable} from "@angular/core";
+
+
+let storage: Storage = new Storage();
+
 
 export abstract class RestService {
 
-  constructor(private http: Http, private storage: Storage){}
+  constructor(private http: Http){}
 
   private API_URL: string = 'http://bcon.eu-2.evennode.com/';
 
@@ -15,12 +20,11 @@ export abstract class RestService {
   }
 
   private get setHeaders(): Promise<Headers> {
-    console.log(this.storage, 'str')
-    return this.storage.ready().then(
-      () => this.storage.get('token').then(
+    return storage.ready().then(
+      () => storage.get('token').then(
         (token: string) => {
           if(token){
-            return new Headers({token: token});
+            return new Headers({'Authorization': 'Bearer ' + token});
           } else {
             return new Headers({});
           }
@@ -34,6 +38,17 @@ export abstract class RestService {
     return this.setHeaders.then(
       (headers: Headers) => {
         return this.http.post(this.getUrl(url), data, {headers})
+          .catch((err: Response) => Observable.throw(err))
+          .map((res: Response) => res.json())
+          .toPromise();
+      }
+    )
+  }
+
+  protected retrieve(url: string): Promise<any> {
+    return this.setHeaders.then(
+      (headers: Headers) => {
+        return this.http.get(this.getUrl(url), {headers})
           .catch((err: Response) => Observable.throw(err))
           .map((res: Response) => res.json())
           .toPromise();

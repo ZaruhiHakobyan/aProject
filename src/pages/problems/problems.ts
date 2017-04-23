@@ -1,22 +1,33 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import {PostService} from "../../services/post.service";
 
-/*
-  Generated class for the Problems page.
+interface IPost {
+  _id: string;
+  title: string;
+  body: string;
+  is_voted: boolean;
+}
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-problems',
   templateUrl: 'problems.html'
 })
 export class ProblemsPage {
+  public posts: Array<IPost> = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, private postService: PostService) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProblemsPage');
+    this.postService.allPosts.then(
+      (res: {posts: Array<IPost>}) => this.posts = res.posts,
+    )
+  }
+
+  public vote(post: IPost): void {
+    this.postService.voteForPost(post._id).then(
+      (res) => console.log(res)
+    )
   }
 
 }

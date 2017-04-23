@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
+import  { Storage } from '@ionic/storage';
 
 import { TabsPage } from '../pages/tabs/tabs';
 
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
+  providers: [Storage]
 })
 export class MyApp {
   rootPage = TabsPage;
