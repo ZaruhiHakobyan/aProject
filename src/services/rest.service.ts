@@ -30,7 +30,7 @@ export abstract class RestService {
           }
         }
       )
-    )
+    );
   }
 
   protected post(url: string, data: any): Promise<any> {

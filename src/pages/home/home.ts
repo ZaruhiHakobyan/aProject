@@ -51,11 +51,14 @@ export class HomePage {
         (res: {token: string}) => this.storage.ready().then(
           () => this.storage.set('token', res.token).then(
             () => this.storage.get('token').then(
-              () => this.goToPosts()
+              () => {
+                this.goToPosts();
+                this.navCtrl.remove(0);
+              }
             )
           )
         ),
-        (err: any) => this.showToast('Useername or password invalid')
+        (err: any) => this.showToast('Username or password invalid')
       )
   }
 
@@ -81,5 +84,18 @@ export class HomePage {
 
   public show = (input) => console.log(input);
 
+  ionViewCanLeave(){
+    this.authService.isAuthenticated.then((isAuth: boolean) => {
+      return isAuth;
+    })
+  }
+
+  ionViewCanEnter(){
+    this.authService.isAuthenticated.then((isAuth: boolean) => {
+      if(isAuth) this.navCtrl.push(PostsPage);
+      this.navCtrl.remove(0);
+      return !isAuth;
+    })
+  }
 
 }

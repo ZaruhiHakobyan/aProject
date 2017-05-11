@@ -4,6 +4,8 @@ import {NavController, Toast, ToastController} from 'ionic-angular';
 import {PostService} from "../../services";
 import {PostsPage} from "../posts/posts";
 import {FormGroup, FormBuilder, Validator, Validators} from "@angular/forms";
+import {HomePage} from "../home/home";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'page-contact',
@@ -17,7 +19,8 @@ export class ContactPage {
     'body': ['', Validators.required]
   });
 
-  constructor(public navCtrl: NavController, private postService: PostService, private toast: ToastController) {}
+  constructor(public navCtrl: NavController, private postService: PostService,
+              private toast: ToastController, private authService: AuthService) {}
 
   public submitPost(data: {title: string, body: string}): void {
     this.submitted = true;
@@ -40,6 +43,13 @@ export class ContactPage {
       duration: 10000
     });
     toast.present()
+  }
+
+  ionViewCanEnter(){
+    this.authService.isAuthenticated.then((isAuth: boolean) => {
+      if(!isAuth) this.navCtrl.push(HomePage);
+    });
+    return true;
   }
 
 }

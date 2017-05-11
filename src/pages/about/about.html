@@ -1,12 +1,16 @@
+<ion-nav #mycontent [root]="rootPage"></ion-nav>
 <ion-header>
   <ion-navbar color="hem_purple">
     <ion-title>
       Մեր մասին
     </ion-title>
+    <button ion-button menuToggle ><i class="fa fa-list" aria-hidden="true"></i> &nbsp; Մենյու</button>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding class="my_content">
+  <app-sidebar [cont]="mycontent"></app-sidebar>
+
   <ion-list>
     <ion-grid>
       <ion-row>

@@ -15,6 +15,7 @@ import { UpcomingPage } from '../pages/upcoming/upcoming';
 
 import {AuthService, PostService} from '../services';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {Sidebar} from "../pages/sidebar/sidebar";
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     PostsPage,
     HistoryPage,
     ProblemsPage,
-    UpcomingPage
+    UpcomingPage,
+    Sidebar
   ],
   imports: [
     FormsModule,

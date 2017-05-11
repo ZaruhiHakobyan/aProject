@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import {AuthService} from "../../services/auth.service";
+import {HomePage} from "../home/home";
 
 /*
   Generated class for the History page.
@@ -13,10 +15,17 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class HistoryPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthService) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HistoryPage');
+  }
+
+  ionViewCanEnter(){
+    this.authService.isAuthenticated.then((isAuth: boolean) => {
+      if(!isAuth) this.navCtrl.push(HomePage);
+    });
+    return true;
   }
 
 }
