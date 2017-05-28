@@ -1,15 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
 import {PostService} from "../../services/post.service";
 import {AuthService} from "../../services/auth.service";
 import {HomePage} from "../home/home";
+import {PostDetailPage} from "../post-detail/post-detail";
+import {PostToCurentPage} from "../post-to-curent/post-to-curent";
 
-interface IPost {
-  _id: string;
-  title: string;
-  body: string;
-  is_voted: boolean;
-}
 
 @Component({
   selector: 'page-problems',
@@ -17,9 +13,11 @@ interface IPost {
 })
 export class ProblemsPage {
   public posts: Array<IPost> = [];
+  public isAdmin: boolean = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              private postService: PostService, private authService: AuthService) {}
+              private postService: PostService, private authService: AuthService,
+              private modalCtrl: ModalController) {}
 
   ionViewDidLoad() {
     this.postService.allPosts.then(
@@ -29,8 +27,21 @@ export class ProblemsPage {
 
   public vote(post: IPost): void {
     this.postService.voteForPost(post._id).then(
-      (res) => console.log(res)
+      (res) => {
+        post.is_voted = true;
+        post.votes++;
+      }
     )
+  }
+
+  public goToPostDetail(post: IPost): void {
+    let postModal = this.modalCtrl.create(PostDetailPage, {post: post});
+    postModal.present();
+  }
+
+  public openAdminModal(post: IPost): void {
+    let adminModal = this.modalCtrl.create(PostToCurentPage, {postId: post._id});
+    adminModal.present();
   }
 
   ionViewCanEnter(){

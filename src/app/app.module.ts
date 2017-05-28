@@ -16,6 +16,8 @@ import { UpcomingPage } from '../pages/upcoming/upcoming';
 import {AuthService, PostService} from '../services';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Sidebar} from "../pages/sidebar/sidebar";
+import {PostDetailPage} from "../pages/post-detail/post-detail";
+import {PostToCurentPage} from "../pages/post-to-curent/post-to-curent";
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import {Sidebar} from "../pages/sidebar/sidebar";
     HistoryPage,
     ProblemsPage,
     UpcomingPage,
-    Sidebar
+    Sidebar,
+    PostDetailPage,
+    PostToCurentPage
   ],
   imports: [
     FormsModule,
@@ -46,7 +50,9 @@ import {Sidebar} from "../pages/sidebar/sidebar";
     PostsPage,
     HistoryPage,
     ProblemsPage,
-    UpcomingPage
+    UpcomingPage,
+    PostDetailPage,
+    PostToCurentPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService, PostService]
 })

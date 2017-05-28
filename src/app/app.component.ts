@@ -1,9 +1,13 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
+import {Platform, NavController, Nav} from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 import  { Storage } from '@ionic/storage';
 
 import { TabsPage } from '../pages/tabs/tabs';
+import {PostsPage} from "../pages/posts/posts";
+import {ProblemsPage} from "../pages/problems/problems";
+import {UpcomingPage} from "../pages/upcoming/upcoming";
+import {HistoryPage} from "../pages/history/history";
 
 
 @Component({
@@ -12,6 +16,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 })
 export class MyApp {
   rootPage = TabsPage;
+  @ViewChild(Nav) nav: Nav;
 
   constructor(platform: Platform) {
     platform.ready().then(() => {
@@ -20,5 +25,21 @@ export class MyApp {
       StatusBar.styleDefault();
       Splashscreen.hide();
     });
+  }
+
+  goToPosts(){
+    this.nav.push(PostsPage);
+  }
+
+  goToExistingProblems(){
+    this.nav.push(ProblemsPage);
+  }
+
+  goToUpcomingProblems(){
+    this.nav.push(UpcomingPage);
+  }
+
+  goToHistory(){
+    this.nav.push(HistoryPage);
   }
 }

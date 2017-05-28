@@ -22,4 +22,8 @@ export class PostService extends RestService {
     return this.post(this.baseUrl + _id + '/vote', {});
   }
 
+  public postToCurrent(_id: string, data: {date: Date, info: string, meeting: boolean}): Promise<any> {
+    return this.post('post/' + _id + '/meeting', data);
+  }
+
 }
