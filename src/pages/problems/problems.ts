@@ -4,6 +4,7 @@ import {PostService} from "../../services/post.service";
 import {AuthService} from "../../services/auth.service";
 import {HomePage} from "../home/home";
 import {PostDetailPage} from "../post-detail/post-detail";
+import { Storage } from '@ionic/storage';
 import {PostToCurentPage} from "../post-to-curent/post-to-curent";
 
 
@@ -17,7 +18,10 @@ export class ProblemsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private postService: PostService, private authService: AuthService,
-              private modalCtrl: ModalController) {}
+              private modalCtrl: ModalController, private storage: Storage) {
+
+    storage.get('role').then((role: string) => this.isAdmin = role === "admin");
+  }
 
   ionViewDidLoad() {
     this.postService.allPosts.then(
@@ -28,8 +32,13 @@ export class ProblemsPage {
   public vote(post: IPost): void {
     this.postService.voteForPost(post._id).then(
       (res) => {
-        post.is_voted = true;
-        post.votes++;
+        if(post.isVoted){
+          post.isVoted = false;
+          post.votes--;
+        } else {
+          post.isVoted = true;
+          post.votes++;
+        }
       }
     )
   }

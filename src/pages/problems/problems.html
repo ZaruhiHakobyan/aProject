@@ -9,9 +9,9 @@
       <ion-list-header class="problem_title">{{ post.title }}</ion-list-header>
     </ion-list>
     <div text-right>
-      <button ion-button (click)="openAdminModal(post)">Admini hamar</button>
-      <button class="vote_btn" (click)="vote(post)" [disabled]="post.is_voted">Քվեարկել</button>
-      <button ion-button>{{ post.votes }}</button>
+      <button ion-button (click)="openAdminModal(post)" *ngIf="isAdmin">Admini hamar</button>
+      <button class="vote_btn" (click)="vote(post)">Քվեարկել</button>
+      <button ion-button color="hem_purple">{{ post.votes }}</button>
     </div>
   </div>
 </ion-content>

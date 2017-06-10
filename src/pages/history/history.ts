@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {AuthService} from "../../services/auth.service";
 import {HomePage} from "../home/home";
+import {PostService} from "../../services/post.service";
 
 /*
   Generated class for the History page.
@@ -15,10 +16,15 @@ import {HomePage} from "../home/home";
 })
 export class HistoryPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthService) {}
+  posts: Array<IPost>;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthService,
+              private postService: PostService) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HistoryPage');
+    this.postService.allPosts.then(
+      (res: {posts: Array<IPost>}) => this.posts = res.posts.filter((post: IPost) => post.accepted === false || post.accepted === true),
+    )
   }
 
   ionViewCanEnter(){

@@ -2,6 +2,8 @@ interface IPost {
   _id: string;
   title: string;
   body: string;
-  is_voted: boolean;
+  isVoted: boolean;
   votes: number;
+  meeting: {date: string, info: string};
+  accepted: boolean;
 }

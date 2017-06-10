@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import {NavController, NavParams, ModalController} from 'ionic-angular';
 import {AuthService} from "../../services/auth.service";
+import {PostService} from "../../services/post.service";
 import {HomePage} from "../home/home";
+import {PostDetailPage} from "../post-detail/post-detail";
+import { Storage } from '@ionic/storage';
 
 /*
   Generated class for the Upcoming page.
@@ -15,10 +18,25 @@ import {HomePage} from "../home/home";
 })
 export class UpcomingPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthService) {}
+  posts: Array<IPost>;
+  public isAdmin: boolean = true;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthService,
+              private postService: PostService, private modalCtrl: ModalController, private storage: Storage) {
+
+    storage.get('role').then((role: string) => this.isAdmin = role === "admin");
+  }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad UpcomingPage');
+    this.postService.allPosts.then((res: {posts: Array<IPost>}) => {
+      this.posts = res.posts.filter((item: IPost) => !!item.meeting);
+      console.log(this.posts, 'psto')
+    })
+  }
+
+  public goToPostDetail(post: IPost): void {
+    let postModal = this.modalCtrl.create(PostDetailPage, {post: post});
+    postModal.present();
   }
 
   ionViewCanEnter(){
@@ -27,6 +45,14 @@ export class UpcomingPage {
       return false;
     });
     return true;
+  }
+
+  accept(post: IPost): void {
+    this.postService.accept(post._id);
+  }
+
+  decline(post: IPost): void {
+    this.postService.decline(post._id);
   }
 
 }

@@ -48,16 +48,14 @@ export class HomePage {
     if(!this.form.valid) return;
     this.authService.login(data)
       .then(
-        (res: {token: string}) => this.storage.ready().then(
-          () => this.storage.set('token', res.token).then(
-            () => this.storage.get('token').then(
-              () => {
-                this.goToPosts();
-                this.navCtrl.remove(0);
-              }
-            )
-          )
-        ),
+        (res: {token: string, role: string}) => this.storage.ready().then(
+          () =>{ this.storage.set('token', res.token);
+                this.storage.set('role', res.role).then(() => {
+                    this.goToPosts();
+                    this.navCtrl.remove(0);
+                  }
+                );
+          }),
         (err: any) => this.showToast('Username or password invalid')
       )
   }

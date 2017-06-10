@@ -18,12 +18,20 @@ export class PostService extends RestService {
     return this.retrieve(this.baseUrl);
   }
 
+  public accept(_id: string): Promise<any> {
+    return this.post(this.baseUrl + _id + '/accept', {});
+  }
+
+  public decline(_id: string): Promise<any> {
+    return this.post(this.baseUrl + _id + '/decline', {});
+  }
+
   public voteForPost(_id: string): Promise<any> {
     return this.post(this.baseUrl + _id + '/vote', {});
   }
 
   public postToCurrent(_id: string, data: {date: Date, info: string, meeting: boolean}): Promise<any> {
-    return this.post('post/' + _id + '/meeting', data);
+    return this.post(this.baseUrl + _id + '/meeting', data);
   }
 
 }
