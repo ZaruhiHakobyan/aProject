@@ -10,6 +10,10 @@ import { UpcomingPage } from '../upcoming/upcoming';
 import {AuthService} from '../../services';
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 
+const EMAIL_REGEXP: RegExp = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+
+const validateEmail = control => EMAIL_REGEXP.test(control.value) ? null : {email: true};
+
 
 @Component({
   selector: 'page-home',
@@ -19,7 +23,7 @@ import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 export class HomePage {
 
   public form: FormGroup = (new FormBuilder()).group({
-    email: ['', Validators.compose([Validators.required])],
+    email: ['', Validators.compose([Validators.required, validateEmail])],
     password: ['', Validators.compose([Validators.required])]
   });
   public submitted: boolean = false;

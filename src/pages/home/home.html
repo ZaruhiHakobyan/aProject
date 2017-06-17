@@ -42,6 +42,9 @@
       </ion-item>
       <div class="errors" *ngIf="(submitted || form.controls['email'].touched) && form.controls['email'].errors">
         <span *ngIf="form.controls['email'].errors.required">Դաշտը պարտադիր է լրացման համար</span>
+        <span *ngIf="form.controls['email'].errors.email && !form.controls['email'].errors.required">
+          Մուտքագրված արժեքը պետք է լինի էլեկտրոնային հասցե
+        </span>
       </div>
       <ion-item>
         <ion-label floating>Գաղտնաբառ</ion-label>

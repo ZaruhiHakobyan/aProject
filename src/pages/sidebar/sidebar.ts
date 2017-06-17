@@ -10,9 +10,6 @@ import {HistoryPage} from "../history/history";
   template: `<ion-menu background="hem_purple" type="overlay" [content]="cont">
     <ion-content>
       <ion-list>
-        <button class="menu_btn_item" (click)="goToPosts();"><i class="fa fa-newspaper-o" aria-hidden="true"></i>  &nbsp;  Նորություններ</button>
-      </ion-list>
-      <ion-list>
         <button class="menu_btn_item" (click)="goToExistingProblems();"><i class="fa fa-list-alt" aria-hidden="true"></i> &nbsp; Հրատապ խնդիրներ </button>
       </ion-list>
       <ion-list>
